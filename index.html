@@ -54,7 +54,7 @@
     let myVue = new Vue({
       el: '#app',
       components: {
-        'myComponent': httpVueLoader('https://who-covid-19.github.io/myComponent.vue')
+        'myComponent': 'url:myComponent.vue'
       },
       data: {
         newTask: 'Mayank Chaudhari',
