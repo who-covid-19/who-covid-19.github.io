@@ -75,7 +75,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
   .md-app {
     max-height: 400px;
     border: 1px solid rgba(#000, .12);
