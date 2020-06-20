@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Awesome Vuejs Course</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        .notactive {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>My First Awesome Vue Project!</h1>
+        <hr>
+        <input type="text" v-model="newTask" v-on:keypress.enter="addTask()">
+        <ul>
+            <li v-for="(task, ind) in tasks" v-bind:key="ind">
+                <input type="checkbox" v-model="task.done">
+                <span v-bind:class="{'notactive': task.done}">{{task.title}}</span>
+            </li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let myVue = new Vue({
+            el: '#app',
+            data: {
+                newTask: 'Mayank Chaudhari',
+                tasks: []
+            },
+            methods: {
+                addTask() {
+                    if(this.newTask.trim() != '')
+                        this.tasks.push({
+                            title: this.newTask,
+                            done: false
+                        });
+                    this.newTask = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

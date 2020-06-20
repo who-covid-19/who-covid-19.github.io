@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An Awesome Vuejs Course</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+  <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/theme/default.css">
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .notactive {
+      text-decoration: line-through;
+    }
+
+    .md-app {
+      max-height: 400px;
+      border: 1px solid rgba(#000, .12);
+    }
+
+    .md-drawer {
+      width: 230px;
+      max-width: calc(100vw - 125px);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <my-component></my-component>
+    <h1>My First Awesome Vue Project!</h1>
+    <hr>
+    <input type="text" v-model="newTask" v-on:keypress.enter="addTask()">
+    <ul>
+      <li v-for="(task, ind) in tasks" v-bind:key="ind">
+        <input type="checkbox" v-model="task.done">
+        <span v-bind:class="{'notactive': task.done}">{{task.title}}</span>
+      </li>
+    </ul>
+  </div>
+  <script src="vue.js"></script>
+  <script src="https://unpkg.com/vue-material"></script>
+  <script src="https://unpkg.com/http-vue-loader"></script>
+  <script>
+    Vue.use(VueMaterial.default);
+
+
+
+    let myVue = new Vue({
+      el: '#app',
+      components: {
+        'myComponent': httpVueLoader('myComponent.vue')
+      },
+      data: {
+        newTask: 'Mayank Chaudhari',
+        tasks: []
+      },
+      methods: {
+        addTask() {
+          if (this.newTask.trim() != '')
+            this.tasks.push({
+              title: this.newTask,
+              done: false
+            });
+          this.newTask = '';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
